@@ -36,6 +36,29 @@ export const db = getFirestore();
 
 export const createUserDocFromAuth = async (userAuth) => {
   const userDocRef = doc(db, "users", userAuth.uid);
-
   console.log(userDocRef);
+  const userSnapshot = await getDoc(userDocRef);
+  // userSnashot is the document in the collection User that will house the indeviduial user auth info
+  console.log(userSnapshot);
+  console.log(userSnapshot.exists());
+
+  if (!userSnapshot.exists()) {
+    //the parameter that retruns of the signInWithPop object
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      //setDoc(the document refrence,{object if field you want to set})
+      setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+      });
+    } catch (error) {
+      console.log("SignIn failed", error.message);
+    }
+  } else {
+    console.log("User Aleady signed in");
+    return userDocRef;
+  }
 };
