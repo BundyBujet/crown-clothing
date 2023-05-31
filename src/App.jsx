@@ -4,7 +4,11 @@ import Navbar from "./routes/navbar/Navbar";
 import Authantication from "./routes/Authantication/Authantication";
 
 const Shop = () => {
-  return <h1>Iam the Shope</h1>;
+  return (
+    <>
+      <h1>Iam the Shope</h1>
+    </>
+  );
 };
 
 const App = () => {

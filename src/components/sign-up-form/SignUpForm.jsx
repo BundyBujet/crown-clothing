@@ -46,7 +46,6 @@ const SignUpForm = () => {
         email,
         password
       );
-
       //create the Doc with Auth and object for adding displayName to the Doc
       createUserDocFromAuth(user, { displayName: displayName });
 
