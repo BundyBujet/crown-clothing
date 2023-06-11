@@ -15,13 +15,16 @@ const Category = () => {
   }, [category, categoryMap]);
 
   return (
-    <div className={Style.categoryContainer}>
-      {/* save guard alway if tour components depend on async data */}
-      {products &&
-        products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-    </div>
+    <>
+      <h2 className={Style.title}>{category.toLocaleUpperCase()}</h2>
+      <div className={Style.categoryContainer}>
+        {/* save guard alway if tour components depend on async data */}
+        {products &&
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
+    </>
   );
 };
 
