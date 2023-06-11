@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.style.scss";
+import Style from "./Button.module.scss";
 
 const Button_Type_Classes = {
   google: "google-sign-in",
@@ -9,7 +9,7 @@ const Button_Type_Classes = {
 const Button = ({ children, buttonType, btnType, onClick }) => {
   return (
     <button
-      className={`button-container ${Button_Type_Classes[buttonType]}`}
+      className={`${Style.buttonContainer} ${Button_Type_Classes[buttonType]}`}
       type={btnType}
       onClick={onClick}
     >

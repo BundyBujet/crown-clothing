@@ -1,15 +1,15 @@
-import "./CategoryItem.style.scss";
+import Style from "./CategoryItem.module.scss";
 
 import React from "react";
 
 const CategoryItem = ({ title, imageUrl }) => {
   return (
-    <div className="category-container">
+    <div className={Style.categoryContainer}>
       <div
-        className="background-image"
+        className={Style.backgroundImage}
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
-      <div className="category-body-container">
+      <div className={Style.categoryBodyContainer}>
         <h2>{title}</h2>
         <p>Shop now</p>
       </div>

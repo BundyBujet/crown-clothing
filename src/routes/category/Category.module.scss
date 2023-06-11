@@ -1,5 +1,6 @@
-.products-container {
+.categoryContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 25px 10px;
+  column-gap: 20px;
+  row-gap: 50px;
 }

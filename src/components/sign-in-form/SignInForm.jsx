@@ -5,7 +5,7 @@ import {
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/FormInput";
-import "./SignIn.style.scss";
+import Style from "./SignIn.module.scss";
 import Button from "../button/Button";
 
 const defualtForm = {
@@ -56,7 +56,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <div className={Style.signUpContainer}>
       <h2>Aleardy Have an Account?</h2>
       <span>Sign in with email and password</span>
       <form onSubmit={handelSubmit}>
@@ -77,7 +77,7 @@ const SignInForm = () => {
           name="password"
           value={password}
         />
-        <div className="buttons-container">
+        <div className={Style.buttonsContainer}>
           <Button btnType="submit">SignIn</Button>
           <Button
             btnType="button"

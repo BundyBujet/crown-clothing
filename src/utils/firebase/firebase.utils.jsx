@@ -10,7 +10,16 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -41,6 +50,45 @@ export const signInWithGoogleRedirect = () =>
 
 // instantiat a db
 export const db = getFirestore();
+
+//initialize the write to db function
+export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  //the batch taht govern the transaction to the DB --CRUD operation-
+  const batch = writeBatch(db);
+
+  objectToAdd.forEach((object) => {
+    //path the document reference to add
+    //to get the spacific db you'r using for the operation
+    //second parameter is the key for the document -title-
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    //useing the batch to do a set  operation and passing the document to set it with object as value -sec param-
+    batch.set(docRef, object);
+  });
+  //wait for your set -commit- to be handeled
+  await batch.commit();
+  console.log("Done");
+};
+
+export const getCategoriesAndDocuments = async () => {
+  // pase the collection refrence (database, collection Name);
+  const collectionRef = collection(db, "categories");
+  //generate the query using the collection refrence
+  //it return an object with snapshot
+  const genQuery = query(collectionRef);
+  //use the snapshot to get the document
+  //we use it to fetch this document spapshots -actual data inside-
+  const querySnapshot = await getDocs(genQuery);
+
+  const categoryMap = querySnapshot.docs.reduce((acc, querySnapshot) => {
+    const { title, items } = querySnapshot.data();
+
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return categoryMap;
+};
 
 //handel the document checking an creating base on the auth from the provider -Google-
 // additionParam is an Object that set the displayename

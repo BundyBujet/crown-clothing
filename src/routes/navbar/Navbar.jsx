@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Logo from "../../assets/87 - crown.svg";
-import "./Navbar.scss";
+import Style from "./Navbar.module.scss";
 import { Outlet, Link } from "react-router-dom";
 import { UserContext } from "../../context/UserConttext";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
@@ -18,20 +18,20 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navigation">
-        <Link className="logo-container" to="/">
-          <img src={Logo} alt="logo" className="logo" />
+      <div className={Style.navigation}>
+        <Link className={Style.logoContainer} to="/">
+          <img src={Logo} alt="logo" className="{Style.logo}" />
         </Link>
-        <div className="nav-links-container">
-          <Link className="nav-link" to="/shop">
+        <div className={Style.navLinksContainer}>
+          <Link className={Style.navLink} to="/shop">
             Shop
           </Link>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutHandler}>
+            <span className={Style.navLink} onClick={signOutHandler}>
               Sign out
             </span>
           ) : (
-            <Link className="nav-link" to="/auth">
+            <Link className={Style.navLink} to="/auth">
               Sign In
             </Link>
           )}

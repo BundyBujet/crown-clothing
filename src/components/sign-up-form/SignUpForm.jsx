@@ -5,7 +5,7 @@ import {
   createUserDocFromAuth,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/FormInput";
-import "./SignUp.style.scss";
+import Style from "./SignUp.module.scss";
 import Button from "../button/Button";
 
 const defualtForm = {
@@ -63,7 +63,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <div className={Style.signUpContainer}>
       <h2>Don't Have an Account?</h2>
       <span>Sign up with email and password</span>
       <form onSubmit={handelSubmit}>
